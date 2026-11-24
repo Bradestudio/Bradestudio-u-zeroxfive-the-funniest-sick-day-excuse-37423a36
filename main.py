@@ -30,6 +30,10 @@ def main():
         sys.exit("entry must be exactly one line")
     if text != text.strip():
         sys.exit("entry must not start or end with whitespace")
+    if "  " in text:
+        # A double space reads as a typo in a message typed by a real
+        # person, and it wastes a character the punchline could use.
+        sys.exit("entry must not contain a double space")
     if not 1 <= len(text) <= 200:
         sys.exit("entry must be 1-200 characters, got %d" % len(text))
     if not text.startswith("Can't come in today"):
